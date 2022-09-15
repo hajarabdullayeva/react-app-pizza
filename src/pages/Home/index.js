@@ -1,4 +1,4 @@
-function Index() {
+function Home() {
     return (
         <>
             <h1>Home</h1>
@@ -6,4 +6,4 @@ function Index() {
     )
 }
 
-export default Index
+export default Home
