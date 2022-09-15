@@ -12,7 +12,7 @@ const Register = () => {
     const navigate = useNavigate();
 
     function login() {
-        navigate("/");
+        navigate("/login");
     }
 
     const {
