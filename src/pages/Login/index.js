@@ -1,66 +1,81 @@
-import React from 'react'
-import { useForm } from 'react-hook-form';
+import {useForm} from "react-hook-form";
 import * as yup from "yup";
-import { yupResolver } from "@hookform/resolvers/yup";
-import "./_login.scss"
+import {yupResolver} from "@hookform/resolvers/yup";
 
 
-const schema = yup.object().shape({
-    email: yup.string().email().required(),
-    password: yup.string().min(8).max(32).required(),
-});
-const onSubmitHandler = (data) => {
-    console.log({ data });
-};
+import { registerSchema } from "../../schema/formSchema";
 
-const Index = () => {
-    const { register, handleSubmit, formState: { errors } } = useForm({
-        resolver: yupResolver(schema),
+const textInputClassName =
+    "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500";
+
+const Login = () => {
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+    } = useForm({
+        resolver: yupResolver(registerSchema),
     });
+
+    const formSubmitHandler = (data) => {
+        console.log(data);
+    };
+
     return (
-        <div className="w-full max-w-xs login__page">
-            <form onSubmit={handleSubmit(onSubmitHandler)} className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
-                <h2 className="text-3xl font-bold">LOGIN FORM</h2>
-                <br />
-                <label
-                    className="block text-gray-700 text-sm font-bold mb-2"
-                    htmlFor="username"
-                >
-                    Email
-                </label>
-                <input {...register("email")}
-                    placeholder="email" type="email"
-                    required className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
-                <p>{errors.email?.message}</p>
-                <br />
-                <label
-                    className="block text-gray-700 text-sm font-bold mb-2"
-                    htmlFor="password"
-                >
-                    Password
-                </label>
-                <input
-                    {...register("password")}
-                    placeholder="password"
-                    type="password"
-                    required
-                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                />
+        <div className="md:w-[500px] shadow-sm shadow-white bg-white w-[320px] mx-auto px-7 py-4 rounded-xl">
+            <h1>LOGIN FORM</h1>
 
-                <p>{errors.password?.message}</p>
-                <br />
-
-                <div className="flex items-center justify-between">
-                    <button
-                        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                        type="button"
+            <form onSubmit={handleSubmit(formSubmitHandler)} className="w-full register-form">
+                <div className="mb-6">
+                    <label
+                        htmlFor="email"
+                        className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
                     >
-                        Sign In
-                    </button>
+                        Your email
+                    </label>
+                    <input
+                        {...register("email")}
+                        type="text"
+                        name="email"
+                        id="email"
+                        className={textInputClassName}
+                        placeholder="test@test.com"
+                    />
+                    {errors.email ? (
+                        <span className="text-red-900">{errors.email.message}</span>
+                    ) : (
+                        <></>
+                    )}
                 </div>
+                <div className="mb-6">
+                    <label
+                        htmlFor="password"
+                        className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                    >
+                        Your password
+                    </label>
+                    <input
+                        {...register("password")}
+                        type="password"
+                        name="password"
+                        id="password"
+                        className={textInputClassName}
+                    />
+                    {errors.password ? (
+                        <span className="text-red-900">{errors.password.message}</span>
+                    ) : (
+                        <></>
+                    )}
+                </div>
+                <button
+                    type="submit"
+                    className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                >
+                    Login
+                </button>
             </form>
         </div>
-    )
-}
+    );
+};
 
-export default Index
+export default Login;
