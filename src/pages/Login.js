@@ -17,7 +17,7 @@ const Login = () => {
     });
     return (
         <div className="w-full max-w-xs">
-            <form onSubmit={handleSubmit(onSubmitHandler)} class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+            <form onSubmit={handleSubmit(onSubmitHandler)} className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
                 <h2 className="text-3xl font-bold">LOGIN FORM</h2>
                 <br />
                 <label
