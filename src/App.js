@@ -1,11 +1,11 @@
-import Index from "./components/Header";
+import Login from "./components/Header";
 import "./style/style.scss"
 import {Routes, Route, useParams} from "react-router-dom";
 import {routes} from "./routes"
 function App() {
     return (
         <div className="App">
-            <Index/>
+            <Login/>
 
             {routes.map(route => (
                 <Routes>
