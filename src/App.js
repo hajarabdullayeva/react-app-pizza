@@ -1,6 +1,6 @@
 import Login from "./components/Header";
 import "./style/style.scss"
-import {Routes, Route, useParams} from "react-router-dom";
+import {Routes, Route} from "react-router-dom";
 import {routes} from "./routes"
 function App() {
     return (
